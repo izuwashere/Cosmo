@@ -27,30 +27,30 @@ public class SaleService {
     //Create sale
      @Transactional
         public void createSale(Sale sale) throws MiException {
-    // Validar los campos de la venta
+
         validateSale(sale);
 
-    // Guardar la venta en la base de datos
+   
         saleRepository.save(sale);
     }
 
      
     //Updated sale
     public void updatedSale(String saleId, Sale updatedSale) throws MiException {
-        // Buscar la venta existente por su ID
+        
         Optional<Sale> optionalSale = saleRepository.findById(saleId);
         if (optionalSale.isPresent()) {
             Sale sale = optionalSale.get();
             
-            // Actualizar los campos de la venta con los datos proporcionados
+            
             sale.setName(updatedSale.getName());
             sale.setDate(updatedSale.getDate());
             sale.setTotal(updatedSale.getTotal());
             
-            // Establecer el usuario de la venta
+            
             sale.setUser(updatedSale.getUser());
             
-            // Guardar la venta actualizada en la base de datos
+            
             saleRepository.save(sale);
         } else {
             throw new MiException("Venta no encontrada");
@@ -71,7 +71,7 @@ public class SaleService {
         if (sale.getDate() == null || sale.getDate().isEmpty()) {
             throw new MiException("La fecha de la venta no puede estar vacía");
         }
-    }
+    }   
      
     //Delete sale
     public void deleteSale(String id){
@@ -95,7 +95,7 @@ public class SaleService {
         
     //Save sale
     public void saveSale(Sale sale) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
 

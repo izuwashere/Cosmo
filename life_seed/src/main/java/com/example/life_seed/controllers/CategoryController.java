@@ -46,11 +46,11 @@ public class CategoryController {
         
         categoryService.createCategory(category);
         
-        return new ResponseEntity<>("Factura creada", HttpStatus.CREATED);
+        return new ResponseEntity<>("Categoria creada", HttpStatus.CREATED);
     } catch (ResponseStatusException ex) {
-        return new ResponseEntity<>("Error al crear factura: " + ex.getMessage(), ex.getStatus());
+        return new ResponseEntity<>("Error al crear categoria: " + ex.getMessage(), ex.getStatus());
     } catch (MiException ex) {
-        return new ResponseEntity<>("Error al crear factura: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>("Error al crear categoria: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
     
@@ -60,21 +60,21 @@ public class CategoryController {
       public ResponseEntity<String> updatedCategory(@PathVariable String id, @RequestBody Category category){
       try {
             categoryService.updatedCategory(id, category);
-            return ResponseEntity.ok("Factura actualizada correctamente");
+            return ResponseEntity.ok("Categoria  actualizada correctamente");
         } catch (MiException ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar la factura: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar la categoria: " + ex.getMessage());
         }
 }
       
       
    //Delete category
     @DeleteMapping("/detele_category/{id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable String id){
+     public ResponseEntity<String> deleteCategory(@PathVariable String id){
         try{
             categoryService.deleteCategory(id);
-             return new ResponseEntity<>("Categoria eliminada", HttpStatus.OK);
+        return new ResponseEntity<>("Categoria eliminada", HttpStatus.OK);
         }catch (Exception ex) {
-            return new ResponseEntity<>("Error al eliminar categoria: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al eliminar la categoria: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     

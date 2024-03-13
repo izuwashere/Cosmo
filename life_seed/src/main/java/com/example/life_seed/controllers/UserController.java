@@ -48,29 +48,29 @@ public class UserController {
   @PutMapping("/updated_user/{id}")
     public ResponseEntity<String> updatedUser(@PathVariable String id, @RequestBody User user) {
         try {
-            // Buscar el usuario por su id
+           
             Optional<User> optionalUser = userService.findByIdUser(id);
             if (optionalUser.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
 
-            // Obtener el usuario existente
+            
             User existingUser = optionalUser.get();
 
-            // Actualizar los campos del usuario
+            
             existingUser.setName(user.getName());
             existingUser.setPassword(user.getPassword());
             existingUser.setPhone(user.getPhone());
             existingUser.setUsername(user.getUsername());
             existingUser.setAddress(user.getAddress());
 
-            // Llamar al método updatedUser del servicio para actualizar el usuario en la base de datos
+            
             userService.updatedUser(existingUser);
 
-            // Retornar una respuesta exitosa
+            
             return ResponseEntity.ok("Usuario actualizado correctamente");
         } catch (Exception ex) {
-            // Manejar cualquier excepción y retornar un mensaje de error
+          
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el usuario");
         }
     }

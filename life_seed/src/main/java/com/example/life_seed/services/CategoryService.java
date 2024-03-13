@@ -20,7 +20,7 @@ public class CategoryService {
     
     
     
-     //METHOD
+    //METHOD
     //Create detail
     @Transactional
     public void createCategory(Category category) throws MiException{
@@ -33,16 +33,15 @@ public class CategoryService {
     
     //Updated category
     public void updatedCategory(String CategoryId,Category updatedCategory) throws MiException{
-         // Buscar la venta existente por su ID
+     
         Optional<Category> respuesta = categoryRepository.findById(CategoryId);
         if (respuesta.isPresent()) {
             Category category = respuesta.get();
             
-            // Actualizar los campos de la venta con los datos proporcionados
+         
             category.setName(updatedCategory.getName());
             
             
-            // Guardar la venta actualizada en la base de datos
             categoryRepository.save(category);
         } else {
             throw new MiException("Categoria no encontrada");
@@ -51,9 +50,9 @@ public class CategoryService {
     
     //Delete category
     public void deleteCategory(String id){
-        Optional<Category>categoryToDelte = categoryRepository.findById(id);
+        Optional<Category>categoryToDelete = categoryRepository.findById(id);
         
-        if(categoryToDelte.isEmpty()){
+            if(categoryToDelete.isPresent()){
             categoryRepository.deleteById(id);
         }else{
             throw new IllegalArgumentException("Categoria no existente.");

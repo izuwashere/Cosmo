@@ -59,8 +59,6 @@ public ResponseEntity<String> createSale(@RequestBody SaleRequest request) {
     }
 }
 
-
-
     
     // Updated sale
     @PutMapping("/updated_sale/{id}")

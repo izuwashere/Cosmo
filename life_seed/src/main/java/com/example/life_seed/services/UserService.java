@@ -75,21 +75,21 @@ public class UserService {
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
-            // Actualizar los campos del usuario
+            
             user.setName(updatedUser.getName());
             user.setPhone(updatedUser.getPhone());
             user.setUsername(updatedUser.getUsername());
             user.setAddress(updatedUser.getAddress());
 
-            // Verificar si se proporcionó una nueva contraseña y cifrarla antes de guardarla
+            
             if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
                 user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
             }
 
-            // Guardar el usuario actualizado en la base de datos
+            
             userRepository.save(user);
         } else {
-            // Manejar el caso en el que no se encuentre el usuario
+           
             throw new RuntimeException("Usuario no encontrado");
         }
     }
@@ -123,7 +123,7 @@ public class UserService {
     //Save user
         public void saveUser(User user) {
         
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            throw new UnsupportedOperationException("Not supported yet."); 
     }
     
     

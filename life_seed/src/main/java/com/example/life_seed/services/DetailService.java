@@ -34,10 +34,10 @@ public class DetailService {
     //Create detail
     @Transactional
     public void createDetail(Detail detail)throws MiException {
-        // Validar los detalle de la venta
+        
         valited(detail);
         
-        // Guardar en a base de datos
+    
         detailRepository.save(detail);
    
     }
@@ -84,7 +84,7 @@ public class DetailService {
      //Save detail
         public void saveSale(Detail detail) {
         
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            throw new UnsupportedOperationException("Not supported yet."); 
     }
         
     //Valited detail

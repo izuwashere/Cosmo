@@ -39,7 +39,7 @@ public class ProductService {
         if (respuesta.isPresent()) {
             Product product = respuesta.get();
 
-            // Actualizar los campos de la venta con los datos proporcionados
+            
             if (updatedProduct.getName() != null) {
                 product.setName(updatedProduct.getName());
             }
@@ -53,13 +53,13 @@ public class ProductService {
                 product.setImages(updatedProduct.getImages());
             }
 
-            // Establecer el usuario de la venta
+          
             product.setCategory(updatedProduct.getCategory());
 
-            // Guardar la venta actualizada en la base de datos
+     
             productRepository.save(product);
         } else {
-            throw new MiException("Categoria no encontrada");
+            throw new MiException("Producto no encontrado");
         }
 
     }
@@ -87,7 +87,7 @@ public class ProductService {
     //Save product
     public void saveProduct(Product product) {
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Producto guardado"); 
     }
 
     //Valited
@@ -104,5 +104,5 @@ public class ProductService {
         if (product == null) {
             throw new MiException("El campo no puede estar nulo o vacio");
         }
-    }
+    }   
 }
