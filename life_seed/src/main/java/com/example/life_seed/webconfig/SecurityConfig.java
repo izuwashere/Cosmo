@@ -21,22 +21,25 @@ public class SecurityConfig {
     private final AuthenticationProvider authProvider;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Bean
+  @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         return http
-                .csrf()
-                .disable()
-                .authorizeRequests()
-                .antMatchers("**").permitAll()
-                .and()
+                .csrf(csrf
+                        -> csrf
+                        .disable())
+                .authorizeHttpRequests(authRequest
+                        -> authRequest
+                        .antMatchers("/allUser/**").permitAll()
+                        .antMatchers("/allUser/verify").authenticated()
+                        .anyRequest().authenticated()
+                )
                 .sessionManagement(sessionManager
                         -> sessionManager
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .cors()
-                .and().headers().and()
+                .cors().and().headers().and()
                 .build();
+
     }
 }

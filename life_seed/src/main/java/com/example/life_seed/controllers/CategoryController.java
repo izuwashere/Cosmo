@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/allUser")
+@RequestMapping("/allCategory")
 @RequiredArgsConstructor
 public class CategoryController {
     

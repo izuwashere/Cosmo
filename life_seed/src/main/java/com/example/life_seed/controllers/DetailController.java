@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/allUser")
+@RequestMapping("/allDetail")
 @RequiredArgsConstructor
 public class DetailController {
     

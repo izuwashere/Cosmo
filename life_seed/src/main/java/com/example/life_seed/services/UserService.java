@@ -40,10 +40,12 @@ public class UserService {
     //Create Users
   public UserResponse login(LoginRequest request){
        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),request.getPassword()));
-       UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
-       String token = jwtService.getToken(user);
+       UserDetails userDetails = userRepository.findByUsername(request.getUsername()).orElseThrow();
+       User user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+       String token = jwtService.getToken(userDetails);
        return UserResponse.builder()
                .token(token)
+               .user(user)
                .build();
        
   }
@@ -63,6 +65,7 @@ public class UserService {
             
             return UserResponse.builder()
                     .token(jwtService.getToken(user))
+                    .user(user)
                     .build();
   }  
     
@@ -149,4 +152,16 @@ public class UserService {
             throw new MiException("El campo no puede estar nulo o vacio");
         }
     }
+    
+    
+    public UserResponse verify(String token) {
+        System.out.println(token);
+        String userName = jwtService.getUsernameFromToken(token);
+        User user = userRepository.findByUsername(userName).orElseThrow();
+        return UserResponse.builder()
+                .token(jwtService.getToken(user))
+                .user(user)
+                .build();
+    
+}
 }

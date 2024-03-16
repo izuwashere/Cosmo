@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/allUser")
+@RequestMapping("/allProduct")
 @RequiredArgsConstructor
 public class ProductController {
 
