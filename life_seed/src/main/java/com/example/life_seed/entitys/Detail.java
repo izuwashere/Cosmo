@@ -22,7 +22,7 @@ public class Detail {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid" , strategy = "uuid2")
-    private String idDeatil;
+    private String idDetail;
     
     private Double amount;
     

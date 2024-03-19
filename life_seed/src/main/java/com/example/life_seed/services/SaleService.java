@@ -42,15 +42,21 @@ public class SaleService {
         if (optionalSale.isPresent()) {
             Sale sale = optionalSale.get();
             
+            if(updatedSale.getName() != null){
+                sale.setName(updatedSale.getName());
+            }
             
-            sale.setName(updatedSale.getName());
-            sale.setDate(updatedSale.getDate());
-            sale.setTotal(updatedSale.getTotal());
+            if(updatedSale.getDate() != null){
+               sale.setDate(updatedSale.getDate());
+            }
             
+            if(updatedSale.getTotal() != null){
+                sale.setTotal(updatedSale.getTotal());
+            }
             
-            sale.setUser(updatedSale.getUser());
-            
-            
+            if(updatedSale.getUser() != null){
+                sale.setUser(updatedSale.getUser());
+            } 
             saleRepository.save(sale);
         } else {
             throw new MiException("Venta no encontrada");

@@ -46,13 +46,18 @@ public class DetailService {
         public void updatedDetail(String idDetail ,Detail updatedDetail) throws MiException{
             Optional<Detail>respuesta = detailRepository.findById(idDetail);
             
-            if(respuesta.isEmpty()){
+            if(respuesta.isPresent()){
                 Detail detail = respuesta.get();
             
-                detail.setAmount(updatedDetail.getAmount());
-                detail.setProduct(updatedDetail.getProduct());
-                detail.setSale(updatedDetail.getSale());
-            
+                if(updatedDetail.getAmount() != null){
+                    detail.setAmount(updatedDetail.getAmount());
+                }
+                if(updatedDetail.getProduct() != null){
+                     detail.setProduct(updatedDetail.getProduct());
+                }
+                if(updatedDetail.getSale() != null){
+                    detail.setSale(updatedDetail.getSale());
+                }
                 detailRepository.save(detail);
                 
             }else {
