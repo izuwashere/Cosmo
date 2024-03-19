@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 public class ProductRequest {
     
+    private String idProduct;
     private String name;
     private String idCategory;
     private double price;

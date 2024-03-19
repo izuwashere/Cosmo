@@ -26,7 +26,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/allSale")
+@RequestMapping("/allUser")
 @RequiredArgsConstructor
 public class SaleController {
     

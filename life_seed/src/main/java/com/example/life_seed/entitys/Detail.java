@@ -1,9 +1,11 @@
 
 package com.example.life_seed.entitys;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,9 +26,12 @@ public class Detail {
     
     private Double amount;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sale")
     private Sale sale;
-    @ManyToOne
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product")
     private Product product;
     
 }
