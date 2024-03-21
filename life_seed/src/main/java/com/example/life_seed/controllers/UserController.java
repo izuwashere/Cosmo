@@ -48,7 +48,7 @@ public class UserController {
     @GetMapping("/verify")
         public ResponseEntity<UserResponse> verify(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader)
     {
-        System.out.println("hola");
+        //System.out.println("hola");
         String token = authorizationHeader.substring(7);
         System.out.println(token); 
         return ResponseEntity.ok(userService.verify(token));

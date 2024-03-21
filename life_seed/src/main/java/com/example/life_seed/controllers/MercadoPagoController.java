@@ -22,39 +22,45 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/allUser")
 public class MercadoPagoController {
+    
+     @PostMapping("/create")
+public ResponseEntity<String> payment(@RequestBody List<ProductRequest> productos) throws MPException {
+    MercadoPagoConfig.setAccessToken("TEST-1384405973768600-031922-9823f9e8a8c4a79820d7e154faad58a2-1733948455");
 
-    @PostMapping("/create")
-    public ResponseEntity<String> payment(@RequestBody ProductRequest product) {
-        MercadoPagoConfig.setAccessToken("TEST-5419652249646760-031819-a150f1ebdf71a449650d53aa6f22dae9-1732172387");
+    List<PreferenceItemRequest> items = new ArrayList<>();
 
-        PreferenceItemRequest itemRequest
-                = PreferenceItemRequest.builder()
-                        .id(product.getIdProduct())
-                        .title(product.getName())
-                        .description(product.getDesciption())
-                        //.pictureUrl("http://picture.com/PS5")
-                        .categoryId(product.getIdCategory())
-                        .quantity(1)
-                        .currencyId("COP")
-                        .unitPrice(new BigDecimal(product.getPrice()))
-                        .build();
-        List<PreferenceItemRequest> items = new ArrayList<>();
-        items.add(itemRequest);
-        PreferenceRequest preferenceRequest = PreferenceRequest.builder()
-                .items(items).build();
+    for (ProductRequest product : productos) {
+        PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
+            .id(product.getIdProduct())
+            .title(product.getName())
+            .description(product.getDesciption())
+            .categoryId(product.getIdCategory())
+            .quantity(1)
+            .currencyId("COP")
+            .unitPrice(new BigDecimal(product.getPrice()))
+            .build();
 
-        try {
-            PreferenceClient client = new PreferenceClient();
-            Preference preference = client.create(preferenceRequest);
-            ///
-            System.out.println(preference.getInitPoint());
-            return ResponseEntity.ok(preference.getInitPoint());
-        } catch (MPApiException ex) {
-            System.out.printf(ex.getMessage());
-            return ResponseEntity.ok("payment no");
-        } catch (MPException ex) {
-            ex.printStackTrace();
-            return ResponseEntity.ok("payment no 2");
-        }
+                items.add(itemRequest);
     }
+
+    PreferenceRequest preferenceRequest = PreferenceRequest.builder()
+            .items(items)
+            .build();
+
+    try {
+        PreferenceClient client = new PreferenceClient();
+        Preference preference = client.create(preferenceRequest);
+        ///
+        System.out.println(preference.getInitPoint());
+        return ResponseEntity.ok(preference.getInitPoint());
+    } catch (MPApiException ex) {
+        System.out.printf(ex.getMessage());
+        return ResponseEntity.ok("payment no");
+    } catch (MPException ex) {
+        ex.printStackTrace();
+        return ResponseEntity.ok("payment no 2");
+
+    }
+}
+
 }
